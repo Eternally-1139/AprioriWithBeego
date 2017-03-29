@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Apriori</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/fonts/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style/main.css" />
+
+    <style>
+        .linkAdv a{
+            width: 32.5%;
+            margin: 0;
+            border-radius: 0;
+            color: #777;
+            text-decoration: none;
+        }
+        .active{
+            color: #2285DE;
+        }
+        .nav-bottom{
+            border-top: 1px solid #eee;
+            width: 100%;
+            height: 50px;
+            padding:15px 20px 15px 20px;
+            background-color: #fff;
+        }
+        .nav-bottom a span{
+            font-size: 16px;
+        }
+        .bg-eee{
+            background-color:#eee;
+        }
+        .line{
+            height: 20px;
+            background-color:#eee;
+        }
+        .padding-15px{
+            padding: 0 20px 20px 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+
+=================data=====================
+{{ .res}}
+</body>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/script/lib/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="/static/script/lib/touche.js"></script>
+<script type="text/javascript" src="/static/script/p-pull-refresh.js"></script>
+<script type="text/javascript">
+
+    var $statu = $('.loading-warp .text');
+
+    var pullRefresh = $('.container').pPullRefresh({
+        $el: $('.container'),
+        $loadingEl: $('.loading-warp'),
+        sendData: null,
+        url: '#',
+        autoHide: false,
+        callbacks: {
+            pullStart: function(){
+                $statu.text('松开开始刷新');
+            },
+            start: function(){
+                $statu.text('数据刷新中···');
+            },
+            success: function(response){
+                $statu.text('数据刷新成功！');
+            },
+            end: function(){
+                $statu.html('刷新成功,autoHide:false,手动执行reset初始设置');
+            },
+            error: function(){
+                $statu.html('刷新失败,autoHide:false,手动执行reset初始设置');
+            }
+        }
+    });
+
+    // pullRefresh.setDestroy(true);
+
+</script>
+</html>
